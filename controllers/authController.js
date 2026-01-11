@@ -23,7 +23,8 @@ const postSignup = async (req, res) => {
     if (existingUser) return res.status(400).send('User already exists');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    await User.createUser(firstName, lastName, username, hashedPassword);
+    const isAdmin = req.body.isAdmin === 'true';
+    await User.createUser(firstName, lastName, username, hashedPassword, isAdmin);
 
     res.send('User created');
   } catch (err) {

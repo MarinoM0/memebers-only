@@ -5,10 +5,10 @@ async function findByUsername(username) {
     return result.rows[0];
 }
 
-async function createUser(firstName, lastName, username, passwordHash) {
-    await pool.query(`INSERT INTO users (first_name, last_name, username, password_hash)
-        VALUES ($1, $2, $3, $4)`, 
-        [firstName, lastName, username, passwordHash]);
+async function createUser(firstName, lastName, username, passwordHash, isAdmin = false) {
+    await pool.query(`INSERT INTO users (first_name, last_name, username, password_hash, is_admin)
+        VALUES ($1, $2, $3, $4, $5)`, 
+        [firstName, lastName, username, passwordHash, isAdmin]);
 }
 
 async function setMemberStatus(userId, isMember) {

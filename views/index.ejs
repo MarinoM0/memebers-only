@@ -27,6 +27,12 @@
         By <%= post.first_name %> <%= post.last_name %>
           <%= new Date(post.created_at).toLocaleString() %>
       </small>
+
+    <% if (currentUser && currentUser.is_admin) { %>
+        <form method="POST" action="/messages/<%= post.id %>/delete">
+            <button type="submit">Delete</button>
+        </form>
+    <% } %>
     <% } %>
   </article>
 <% }); %>

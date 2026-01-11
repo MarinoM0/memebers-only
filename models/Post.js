@@ -19,4 +19,8 @@ async function getAllPosts() {
   return result.rows;
 }
 
-module.exports = { createPost, getAllPosts };
+async function deletePost(postId) {
+  await pool.query('DELETE FROM posts WHERE id=$1', [postId]);
+}
+
+module.exports = { createPost, getAllPosts, deletePost };

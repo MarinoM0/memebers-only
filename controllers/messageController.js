@@ -18,7 +18,15 @@ const postNewMessage = async (req,res) => {
     res.redirect('/');
 }
 
+const deleteMessage = async (req,res) => {
+    const postId = req.params.id;
+
+    await Post.deletePost(postId);
+    res.redirect('/')
+}
+
 module.exports = {
     getNewMessage,
     postNewMessage,
+    deleteMessage,
 };
