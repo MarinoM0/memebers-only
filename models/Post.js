@@ -1,11 +1,22 @@
-const pool = require('../db/db');
+const pool = require("../db/db");
 
-async function createPost(title,content,userId) {
-    await pool.query (
-        `INSERT INTO posts (title,content, user_id)
+async function createPost(title, content, userId) {
+  await pool.query(
+    `INSERT INTO posts (title,content, user_id)
         VALUES ($1,$2,$3)`,
-        [title,content, userId]
-    );
+    [title, content, userId]
+  );
 }
 
-module.exports = { createPost };
+async function getAllPosts() {
+  const result = await pool.query(
+    `SELECT posts.id,posts.title,posts.content,posts.created_at,users.first_name,users.last_name, users.username
+    FROM posts
+    JOIN users ON posts.user_id = users.id
+    ORDER BY posts.created_at DESC`
+  );
+
+  return result.rows;
+}
+
+module.exports = { createPost, getAllPosts };

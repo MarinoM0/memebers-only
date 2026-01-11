@@ -10,3 +10,23 @@
     <a href="/login">Login</a>
     <a href="/signup">Sign up</a>
 <% } %>
+
+<hr />
+
+<% if (!posts || posts.length === 0) { %>
+  <p>No messages yet.</p>
+<% } %>
+
+<% (posts || []).forEach(post => { %>
+  <article style="margin-bottom: 20px;">
+    <h3><%= post.title %></h3>
+    <p><%= post.content %></p>
+
+    <% if (currentUser && currentUser.is_member) { %>
+      <small>
+        By <%= post.first_name %> <%= post.last_name %>
+          <%= new Date(post.created_at).toLocaleString() %>
+      </small>
+    <% } %>
+  </article>
+<% }); %>

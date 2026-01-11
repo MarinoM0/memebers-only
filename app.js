@@ -9,6 +9,7 @@ const passport = require('passport');
 const pool = require('./db/db');
 const {configurePassport} = require('./config/passport');
 const messageRoutes = require('./routes/messageRoutes');
+const Post = require('./models/Post');
 
 
 app.set('view engine', 'ejs');
@@ -40,8 +41,9 @@ app.use((req,res,next) => {
     next();
 })
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/', async (req, res) => {
+    const posts = await Post.getAllPosts();
+    res.render('index', {posts});
 });
 
 app.use('/', authRoutes);
