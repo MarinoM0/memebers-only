@@ -8,6 +8,7 @@ const pgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
 const pool = require('./db/db');
 const {configurePassport} = require('./config/passport');
+const messageRoutes = require('./routes/messageRoutes');
 
 
 app.set('view engine', 'ejs');
@@ -34,11 +35,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req,res,next) => {
+    res.locals.currentUser = req.user;
+    next();
+})
+
 app.get('/', (req, res) => {
-    res.send('Members Only App');
+    res.render('index');
 });
 
 app.use('/', authRoutes);
+app.use('/messages', messageRoutes);
 
 const PORT = process.env.PORT || 5432;
 app.listen(PORT, () => {

@@ -1,0 +1,12 @@
+<h1>Members Only</h1>
+
+<% if (currentUser) { %>
+    <a href="/messages/new">Create a new message</a>
+
+    <form method="POST" action="/logout">
+        <button type="submit">Logout</button>
+    </form>
+<% } else { %>
+    <a href="/login">Login</a>
+    <a href="/signup">Sign up</a>
+<% } %>
