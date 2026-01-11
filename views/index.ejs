@@ -6,6 +6,9 @@
     <form method="POST" action="/logout">
         <button type="submit">Logout</button>
     </form>
+    <% if (!currentUser.is_member) { %>
+        <a href="/join">Join the club</a>
+    <% } %>
 <% } else { %>
     <a href="/login">Login</a>
     <a href="/signup">Sign up</a>

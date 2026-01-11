@@ -26,7 +26,7 @@ const postSignup = async (req, res) => {
     const isAdmin = req.body.isAdmin === 'true';
     await User.createUser(firstName, lastName, username, hashedPassword, isAdmin);
 
-    res.send('User created');
+    res.redirect('/');
   } catch (err) {
     console.error(err);
     res.status(500).send('Server error');
@@ -47,7 +47,7 @@ const postJoinClub = async (req,res) => {
 
   await User.setMemberStatus(req.user.id, true);
 
-  res.send('YOu are now a member!');
+  res.redirect('/');
 };
 
 const getLogin = (req, res) => {
