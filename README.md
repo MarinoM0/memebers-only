@@ -1,18 +1,40 @@
+# Members Only
+
 ## Overview
-A message board where users can sign up, log in, and post messages. Membership status controls access to certain features, and admins can delete messages.
-**Note:** This project is still in progress.
+Members Only is a message board web application where users can sign up, log in, and post messages.  
+Membership status controls access to certain features, and admin users have moderation privileges.
+
+## Live Preview: 
+https://members-only-nm7r.onrender.com
+
 
 ## Features
-- User authentication with **Passport.js** and hashed passwords using **bcrypt**.  
-- Users have first name, last name, username (email), password, membership status, and optional admin flag.  
-- Members can see authors and timestamps of messages; non-members see only message content.  
-- Admins can delete any message.  
-- Sign-up validation, including password confirmation and form sanitization.  
 
-## Technologies
-- Node.js
-- Express  
-- PostgreSQL   
-- Passport.js for authentication  
-- bcrypt for password hashing  
-- express-validator for form validation 
+- User authentication with **Passport.js**
+- Secure password hashing using **bcrypt**
+- Session-based authentication using **express-session**
+- Users have:
+  - First name & last name
+  - Username (email)
+  - Password
+  - Membership status
+  - Optional admin role
+- Logged-in users can create messages
+- Only members can see message authors and timestamps
+- Non-members see message content only
+- Admin users can delete any message
+- Protected routes and role-based access control
+- Sign-up form validation and sanitization
+- Password confirmation during registration
+
+
+## Technologies Used
+
+- **Node.js**
+- **Express.js**
+- **PostgreSQL**
+- **Passport.js** (local strategy)
+- **express-session** (session management)
+- **bcrypt** (password hashing)
+- **express-validator** (form validation)
+- **EJS** (server-side rendering)
